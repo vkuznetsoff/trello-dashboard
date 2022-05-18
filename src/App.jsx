@@ -1,14 +1,17 @@
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import './App.css';
 import { store } from './redux/store';
+import Boards from './Workspace/Board/Boards';
 
-import Board from './Workspace/Board/Board';
+import Board from './Workspace/Board/Boards';
+import Workspace from './Workspace/Workspace';
 
 function App() {
+  
   return (
     <Provider store={store} >
     <div className="App">
-      <Board />
+      <Workspace />
       
     </div>
     </Provider>
