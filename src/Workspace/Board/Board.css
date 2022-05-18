@@ -20,6 +20,7 @@
     background: rgba(69, 22, 28, 0.7);
     max-width: 350px;
     height: auto;
+    border-radius: 10px;
 }
 
 .board__content {
@@ -47,27 +48,7 @@
     outline: 1px solid #45161C
 }
 
-.board__card {
-    background: rgba(250, 235, 215, 0.9);
-    width: 100%;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 
-}
-
-.board__card img {
-    width: 15px;
-    padding: 10px;
-}
-
-.board__card__text {
-    color: #45161C;
-    font-weight: 500;
-    padding: 10px;
-
-}
 
 .board__form {
     width: 100%;
@@ -102,7 +83,7 @@
 }
 
 
-.board__btn__add {
+.board__addbtn {
 
     color: rgb(250, 235, 215);
     background: none;
@@ -131,3 +112,4 @@ textarea {
     resize: none;
     outline: none;
 }
+

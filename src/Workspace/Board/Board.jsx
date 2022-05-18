@@ -1,6 +1,7 @@
 import "./Board.css";
-import remove2 from "../../assets/images/remove2.svg";
+
 import { useState } from "react";
+import Card from "../Cards/Card/Card";
 
 const Board = () => {
   const [visibleForm, setVisibleForm] = useState(false);
@@ -12,9 +13,7 @@ const Board = () => {
    
   };
 
-  const removeHandle = () => {
-    return;
-  };
+  
 
   const openFormHandle = () => {
     setVisibleForm(!visibleForm);
@@ -43,12 +42,9 @@ const changeEditForm = (e) => {
             <div className="board__title" contentEditable="true">
               Заголовок
             </div>
-            <div className="board__card" draggable="true">
-              <div className="board__card__text">Card_1</div>
-              <div className="board__card__removebtn" onClick={removeHandle}>
-                <img src={remove2} />
-              </div>
-            </div>
+
+
+            <Card />
 
             {visibleForm && (
               <div className="board__form">
@@ -72,7 +68,7 @@ const changeEditForm = (e) => {
             )}
 
             {!visibleForm && (
-              <button className="board__btn__add" onClick={openFormHandle}>
+              <button className="board__addbtn" onClick={openFormHandle}>
                 + Добавить карточку
               </button>
             )}
