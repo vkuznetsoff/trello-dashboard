@@ -1,4 +1,4 @@
-import { ADD_ITEM, REMOVE_ITEM } from "./actionTypes"
+import { ADD_BOARD, ADD_ITEM, REMOVE_ITEM } from "./actionTypes"
 
 export const removeItem = (cardId, boardId) => {
     return {
@@ -11,5 +11,11 @@ export const addItem = (boardId, text) => {
     return {
         type: ADD_ITEM,
         payload: {boardId, text}
+    }
+}
+
+export const addBoard = () => {
+    return {
+        type: ADD_BOARD
     }
 }

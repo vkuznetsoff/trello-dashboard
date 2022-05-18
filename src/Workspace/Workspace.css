@@ -1,5 +1,6 @@
 .workspace {
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background: no-repeat url("../assets/images/background2.jpg");
     background-size: cover;
     display: flex;
@@ -11,4 +12,19 @@
 .content {
     width: 80vw;
     padding: 20px;
+    display: flex;
+    column-gap: 40px;
+}
+
+.bottom__addboard {
+    margin-bottom: 50px;
+    padding: 20px 60px ;
+   border-radius: 20px;
+    background: #acca7b;
+    opacity: 85%;
+    font-weight: 600;
+}
+
+.bottom__addboard:hover {
+    filter: brightness(120%) ;
 }

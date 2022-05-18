@@ -1,7 +1,6 @@
-
 .board {
     background: rgba(69, 22, 28, 0.7);
-    max-width: 350px;
+    width: 300px;
     height: auto;
     border-radius: 10px;
 }

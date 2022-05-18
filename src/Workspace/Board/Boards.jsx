@@ -7,7 +7,7 @@ const Boards = ({ boards }) => {
   return (
     <>
       {boards.map(b => (
-        <Board board={b} />
+        <Board key={b.id} board={b} />
       ))
       }
     </>

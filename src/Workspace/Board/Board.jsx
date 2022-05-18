@@ -32,6 +32,7 @@ const Board = ({board}) => {
 
     const addCardHandle = (boardId, text) => {
         dispatch(addItem(boardId, text))
+        closeEditForm()
     }
 
     const cancelHandle = () => {
@@ -47,7 +48,7 @@ const Board = ({board}) => {
 
 
                 {board.items.map((i) => (
-                    <Card card={i} boardId={board.id} />
+                    <Card key={i.id} card={i} boardId={board.id} />
                 ))}
 
                 {visibleForm && (
