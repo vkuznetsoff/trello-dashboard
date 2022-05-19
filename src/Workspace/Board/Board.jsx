@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useDrop } from "react-dnd";
 import { useDispatch } from "react-redux";
 import { dndTypes } from "../../dnd/dndTypes";
-import { addItem, dropCard } from "../../redux/actions";
+import { addItem, dropCard, removeBoard } from "../../redux/actions";
 import Card from "../Cards/Card/Card";
 import "./Boards.css";
 import EditTitle from "./Title/EditTitle";
-
+import boardCancel2 from "../../assets/images/boardCancel2.svg";
 const Board = ({ board }) => {
   const [visibleForm, setVisibleForm] = useState(false);
   const [editText, setEditText] = useState();
@@ -41,8 +41,11 @@ const Board = ({ board }) => {
     closeEditForm();
   };
 
+  const removeBoardHandle = (id) => {
+      dispatch(removeBoard(id))
+  }
+
   const onDrop = (itemId, sourceBoardId, targetBoardId, payload) => {
-    console.log("!");
     dispatch(dropCard(itemId, sourceBoardId, targetBoardId, payload));
   };
 
@@ -53,7 +56,7 @@ const Board = ({ board }) => {
       isOver: monitor.isOver(),
     }),
   }));
-  // console.log('drag: ', item.id, ' from: ', item.from, ' to : ', board.id)
+  
 
   const boardStyle = {
     opacity: isOver ? 0.4 : 1,
@@ -68,6 +71,11 @@ const Board = ({ board }) => {
   return (
     <div className="board" style={boardStyle}>
       <div className="board__content" ref={drop}>
+        <div className="board__header">
+          <div className="board__removebtn" onClick={() => removeBoardHandle(board.id)}>
+            <img src={boardCancel2} alt="removeBoard" />
+          </div>
+        </div>
         <div className="board__title" onClick={titleClickHandle}>
           {!editTitle ? (
             board.title
@@ -90,6 +98,7 @@ const Board = ({ board }) => {
               placeholder="Enter content"
               value={editText}
               onChange={(e) => changeEditForm(e)}
+              autoFocus={true}
             ></textarea>
             <div class="board__form__bottom">
               <button

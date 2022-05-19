@@ -10,13 +10,22 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
-    border: 1px solid white
-
 }
 
 .board__dropbox {
     width: 100%;
     
+}
+
+.board__header {
+    display: flex;
+    width: 100%;
+    flex-direction: reverse-column;
+    justify-content: flex-end;  
+}
+
+.board__removebtn img {
+    width: 20px;
 }
 
 .board__title {
@@ -26,6 +35,8 @@
     color: antiquewhite;
     word-break: break-all;
     margin-bottom: 10px;
+    
+    
 }
 
 .board__title:focus {
@@ -100,4 +111,6 @@ textarea {
     resize: none;
     outline: none;
 }
+
+
 

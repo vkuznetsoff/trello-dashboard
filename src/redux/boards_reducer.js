@@ -4,28 +4,16 @@ import {
   ADD_ITEM,
   CHANGE_BOARD_TITLE,
   DROP_CARD,
+  REMOVE_BOARD,
   REMOVE_ITEM,
 } from "./actionTypes";
 
 const initState = [
   {
-    id: "1",
-    title: "Board-1",
-    items: [
-      {
-        id: "1-1",
-        text: "Task-1",
-      },
-      {
-        id: "1-2",
-        text: "Task-2",
-      },
-      {
-        id: "1-3",
-        text: "Task-3",
-      },
-    ],
-  },
+    id: "b1",
+    title: "Название",
+    items: [],
+  }
 ];
 
 const boardReducer = (state = initState, action) => {
@@ -64,8 +52,10 @@ const boardReducer = (state = initState, action) => {
     case ADD_BOARD:
       return [...state, { id: uniqid(), title: "New board", items: [] }];
 
+    case REMOVE_BOARD:        
+       return state.filter(b => b.id !== action.payload)
+
     case CHANGE_BOARD_TITLE:
-        
       return state.map((b) => {
         if (b.id === action.payload.id) {
           return { ...b, title: action.payload.title };
