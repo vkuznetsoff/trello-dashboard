@@ -1,5 +1,11 @@
 import uniqid from "uniqid";
-import { ADD_BOARD, ADD_ITEM, DROP_CARD, REMOVE_ITEM } from "./actionTypes";
+import {
+  ADD_BOARD,
+  ADD_ITEM,
+  CHANGE_BOARD_TITLE,
+  DROP_CARD,
+  REMOVE_ITEM,
+} from "./actionTypes";
 
 const initState = [
   {
@@ -29,12 +35,9 @@ const boardReducer = (state = initState, action) => {
         if (b.id === action.payload.boardId) {
           return {
             ...b,
-            items: [
-              ...b.items,
-              { id: uniqid(), text: action.payload.text },
-            ],
+            items: [...b.items, { id: uniqid(), text: action.payload.text }],
           };
-        } else return { ...b };
+        } else return b;
       });
 
     case REMOVE_ITEM:
@@ -42,28 +45,32 @@ const boardReducer = (state = initState, action) => {
       return state.map((b) => {
         if (b.id === boardId) {
           return { ...b, items: b.items.filter((i) => i.id !== cardId) };
-        } else return { ...b };
+        } else return b;
       });
 
-      case DROP_CARD:
-          
+    case DROP_CARD:
       const { itemId, sourceBoardId, targetBoardId, payload } = action.payload;
       return state.map((b) => {
         if (b.id === sourceBoardId) {
           return { ...b, items: b.items.filter((i) => i.id !== itemId) };
         } else if (b.id === targetBoardId) {
-            return {
-                ...b,
-                items: [
-                  ...b.items,
-                  { id: uniqid(), text: payload },
-                ],
-              };
-        } else return { ...b };
+          return {
+            ...b,
+            items: [...b.items, { id: uniqid(), text: payload }],
+          };
+        } else return b;
       });
 
-      case ADD_BOARD:
-      return [...state, {id: uniqid(), title: "New board", items: []}]
+    case ADD_BOARD:
+      return [...state, { id: uniqid(), title: "New board", items: [] }];
+
+    case CHANGE_BOARD_TITLE:
+        
+      return state.map((b) => {
+        if (b.id === action.payload.id) {
+          return { ...b, title: action.payload.title };
+        } else return b;
+      });
 
     default:
       return state;

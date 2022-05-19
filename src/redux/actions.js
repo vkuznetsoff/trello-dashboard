@@ -1,4 +1,4 @@
-import { ADD_BOARD, ADD_ITEM, DROP_CARD, REMOVE_ITEM } from "./actionTypes"
+import { ADD_BOARD, ADD_ITEM, CHANGE_BOARD_TITLE, DROP_CARD, REMOVE_ITEM } from "./actionTypes"
 
 export const removeItem = (cardId, boardId) => {
     return {
@@ -17,6 +17,13 @@ export const addItem = (boardId, text) => {
 export const addBoard = () => {
     return {
         type: ADD_BOARD
+    }
+}
+
+export const changeBoardTitle = (title, id) => {
+    return {
+        type: CHANGE_BOARD_TITLE,
+        payload: {title, id}
     }
 }
 
