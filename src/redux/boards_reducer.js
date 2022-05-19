@@ -1,5 +1,5 @@
 import uniqid from "uniqid";
-import { ADD_BOARD, ADD_ITEM, REMOVE_ITEM } from "./actionTypes";
+import { ADD_BOARD, ADD_ITEM, DROP_CARD, REMOVE_ITEM } from "./actionTypes";
 
 const initState = [
   {
@@ -42,6 +42,23 @@ const boardReducer = (state = initState, action) => {
       return state.map((b) => {
         if (b.id === boardId) {
           return { ...b, items: b.items.filter((i) => i.id !== cardId) };
+        } else return { ...b };
+      });
+
+      case DROP_CARD:
+          
+      const { itemId, sourceBoardId, targetBoardId, payload } = action.payload;
+      return state.map((b) => {
+        if (b.id === sourceBoardId) {
+          return { ...b, items: b.items.filter((i) => i.id !== itemId) };
+        } else if (b.id === targetBoardId) {
+            return {
+                ...b,
+                items: [
+                  ...b.items,
+                  { id: uniqid(), text: payload },
+                ],
+              };
         } else return { ...b };
       });
 

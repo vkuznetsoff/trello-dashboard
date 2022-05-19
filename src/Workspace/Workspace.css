@@ -13,6 +13,7 @@
     width: 80vw;
     padding: 20px;
     display: flex;
+    flex: 0 1 auto;
     column-gap: 40px;
 }
 

@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useDrop } from "react-dnd";
 import { useDispatch } from "react-redux";
-import { addItem } from "../../redux/actions";
+import { dndTypes } from "../../dnd/dndTypes";
+import { addItem, dropCard } from "../../redux/actions";
 import Card from "../Cards/Card/Card";
 import "./Boards.css"
 
@@ -39,17 +41,38 @@ const Board = ({board}) => {
         closeEditForm();
     };
 
+    const onDrop = (itemId, sourceBoardId, targetBoardId, payload) => {
+        console.log("!")
+        dispatch(dropCard(itemId, sourceBoardId, targetBoardId, payload))
+    }
+    
+    const [{isOver},drop] = useDrop( () => ({
+        accept: dndTypes.CARD,
+        drop: (item, monitor) => onDrop(item.id, item.from, board.id, item.payload) ,
+        collect: (monitor) => ({
+                isOver: monitor.isOver(),
+        
+        })
+                
+        }))
+    // console.log('drag: ', item.id, ' from: ', item.from, ' to : ', board.id)
+    
+    const boardStyle = {
+        opacity: isOver ? 0.4 : 1,
+    }
     return (
-        <div className="board">
-            <div className="board__content">
+        <div className="board" style={boardStyle}>
+            <div className="board__content" ref={drop}>
                 <div className="board__title" contentEditable="true">
                     {board.title}
                 </div>
 
-
+                
                 {board.items.map((i) => (
                     <Card key={i.id} card={i} boardId={board.id} />
                 ))}
+                   
+                
 
                 {visibleForm && (
                     <div className="board__form">
