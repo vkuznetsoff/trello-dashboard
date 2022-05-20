@@ -46,6 +46,7 @@ const Board = ({ board }) => {
   }
 
   const onDrop = (itemId, sourceBoardId, targetBoardId, payload) => {
+    
     dispatch(dropCard(itemId, sourceBoardId, targetBoardId, payload));
   };
 

@@ -13,7 +13,7 @@ const initState = [
     id: "b1",
     title: "Название",
     items: [],
-  }
+  },
 ];
 
 const boardReducer = (state = initState, action) => {
@@ -39,21 +39,27 @@ const boardReducer = (state = initState, action) => {
     case DROP_CARD:
       const { itemId, sourceBoardId, targetBoardId, payload } = action.payload;
       return state.map((b) => {
-        if (b.id === sourceBoardId) {
+        if (sourceBoardId === targetBoardId) {
+          debugger
+          return b;
+        } else if (b.id === sourceBoardId) {
+          debugger
           return { ...b, items: b.items.filter((i) => i.id !== itemId) };
         } else if (b.id === targetBoardId) {
+          debugger
           return {
             ...b,
             items: [...b.items, { id: uniqid(), text: payload }],
           };
         } else return b;
+    
       });
 
     case ADD_BOARD:
       return [...state, { id: uniqid(), title: "New board", items: [] }];
 
-    case REMOVE_BOARD:        
-       return state.filter(b => b.id !== action.payload)
+    case REMOVE_BOARD:
+      return state.filter((b) => b.id !== action.payload);
 
     case CHANGE_BOARD_TITLE:
       return state.map((b) => {

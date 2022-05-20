@@ -19,8 +19,7 @@ const Card = ({ card, boardId }) => {
      },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
-    }),
-    isDragging: (monitor) => {}
+    })
   }));
 
   const removeHandle = (cardId, boardId) => {
