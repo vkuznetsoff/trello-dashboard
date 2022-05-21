@@ -68,16 +68,18 @@ const boardReducer = (state = initState, action) => {
       
       const item2 = board2.items.find(item => item.id === targetCard.id)
       const dropIndex = board2.items.indexOf(item2);
-      // debugger
+      
+      board2.items.splice(dropIndex + 1, 0, {id: sourceCard.id, text: sourceCard.payload})
+      board1.items.splice(removeIndex, 1)
       
    return state.map(b => {
-     if (b.id === targetBoardId) {
-       debugger
-       return {...b, items: b.items.splice(dropIndex + 1, 0, sourceCard) }
+     if (b.id === tgBoardId) {
+       
+       return board2
      } else if (b.id === scBoardId) {
-      debugger
-       return {...b, items: b.items.splice(removeIndex, 1)}
-     } else return b
+       
+       return board1
+     } else return {...b}
    })
 
     case ADD_BOARD:
