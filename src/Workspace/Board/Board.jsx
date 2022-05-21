@@ -46,15 +46,14 @@ const Board = ({ board }) => {
       dispatch(removeBoard(id))
   }
 
-  // const onDrop = (itemId, sourceBoardId, targetBoardId, payload) => {
-  //   const sourc
-  //   // dispatch(dropCard(itemId, sourceBoardId, targetBoardId, payload));
-  // };
+  const onDrop = (itemId, sourceBoardId, targetBoardId, payload) => {
+    if (sourceBoardId !== targetBoardId) dispatch(dropCard(itemId, sourceBoardId, targetBoardId, payload));
+  };
 const [sourceBoardId, setSourceBoardId] = useState()
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: dndTypes.CARD,
-    drop: (item, monitor) => {},
+    drop: (item, monitor) => onDrop(item.id, item.from, board.id, item.payload),
     collect: (monitor) => ({
       isOver: monitor.isOver()
     }),
