@@ -7,6 +7,7 @@ import Card from "../Cards/Card/Card";
 import "./Boards.css";
 import EditTitle from "./Title/EditTitle";
 import boardCancel2 from "../../assets/images/boardCancel2.svg";
+
 const Board = ({ board }) => {
   const [visibleForm, setVisibleForm] = useState(false);
   const [editText, setEditText] = useState();
@@ -45,22 +46,23 @@ const Board = ({ board }) => {
       dispatch(removeBoard(id))
   }
 
-  const onDrop = (itemId, sourceBoardId, targetBoardId, payload) => {
-    
-    dispatch(dropCard(itemId, sourceBoardId, targetBoardId, payload));
-  };
+  // const onDrop = (itemId, sourceBoardId, targetBoardId, payload) => {
+  //   const sourc
+  //   // dispatch(dropCard(itemId, sourceBoardId, targetBoardId, payload));
+  // };
+const [sourceBoardId, setSourceBoardId] = useState()
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: dndTypes.CARD,
-    drop: (item, monitor) => onDrop(item.id, item.from, board.id, item.payload),
+    drop: (item, monitor) => {},
     collect: (monitor) => ({
-      isOver: monitor.isOver(),
+      isOver: monitor.isOver()
     }),
   }));
   
 
   const boardStyle = {
-    opacity: isOver ? 0.4 : 1,
+    opacity: isOver ? 0.8 : 1,
   };
 
   const [editTitle, setEditTitle] = useState(false);
@@ -90,7 +92,7 @@ const Board = ({ board }) => {
         </div>
 
         {board.items.map((i) => (
-          <Card key={i.id} card={i} boardId={board.id} />
+          <Card key={i.id} card={i} tgboardId={board.id} />
         ))}
 
         {visibleForm && (

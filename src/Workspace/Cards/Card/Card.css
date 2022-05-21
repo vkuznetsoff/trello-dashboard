@@ -8,6 +8,8 @@
     justify-content: space-between;
     border-radius: 10px;
     word-break: break-all;
+    cursor: grab;
+    
 
 }
 
@@ -21,4 +23,22 @@
     font-weight: 500;
     padding: 10px;
 
+}
+
+@keyframes inputMove {
+    0% {
+        transform: translateX(5px);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
 }

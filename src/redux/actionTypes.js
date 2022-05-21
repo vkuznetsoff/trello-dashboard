@@ -6,3 +6,5 @@ export const REMOVE_BOARD = "REMOVE_BOARD"
 export const CHANGE_BOARD_TITLE = "CHANGE_BOARD_TITLE"
 
 export const DROP_CARD = "DROP_CARD"
+export const SORT_CARDS = "SORT_CARDS"
+

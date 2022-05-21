@@ -5,6 +5,8 @@ import {
   DROP_CARD,
   REMOVE_BOARD,
   REMOVE_ITEM,
+  SORT_CARD,
+  SORT_CARDS,
 } from "./actionTypes";
 
 export const removeItem = (cardId, boardId) => {
@@ -45,5 +47,12 @@ export const dropCard = (itemId, sourceBoardId, targetBoardId, payload) => {
   return {
     type: DROP_CARD,
     payload: { itemId, sourceBoardId, targetBoardId, payload },
+  };
+};
+
+export const sortCards = (sourceCard, targetCard, scBoardId, tgBoardId) => {
+  return {
+    type: SORT_CARDS,
+    payload: {sourceCard, targetCard, scBoardId, tgBoardId}
   };
 };
