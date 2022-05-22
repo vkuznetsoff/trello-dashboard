@@ -59,28 +59,38 @@ const boardReducer = (state = initState, action) => {
     // currentBoard.items.splice(removeIndex, 1)
 
     case SORT_CARDS:
-      const { sourceCard, targetCard, scBoardId, tgBoardId } = action.payload
-      const board1 = state.find(b => b.id === scBoardId)
-      const board2 = state.find(b => b.id === tgBoardId)
+      const { sourceCard, targetCard, scBoardId, tgBoardId } = action.payload;
+      const board1 = state.find((b) => b.id === scBoardId);
+      const board2 = state.find((b) => b.id === tgBoardId);
+
+      // const item1 = board1.items.find((item) => item.id === sourceCard.id);
+      // const removeIndex = board1.items.indexOf(item1);
       
-      const item1 = board1.items.find(item => item.id === sourceCard.id)
-      const removeIndex = board1.items.indexOf(item1)
+      const removeIndex = board1.items.findIndex(i => i.id === sourceCard.id)
       
-      const item2 = board2.items.find(item => item.id === targetCard.id)
-      const dropIndex = board2.items.indexOf(item2);
+
+      // const item2 = board2.items.find((item) => item.id === targetCard.id);
+      // const dropIndex = board2.items.indexOf(item2);
+      const dropIndex = board2.items.findIndex(i => i.id === targetCard.id);
+
+      board1.items.splice(removeIndex, 1);
       
-      board2.items.splice(dropIndex + 1, 0, {id: sourceCard.id, text: sourceCard.payload})
-      board1.items.splice(removeIndex, 1)
-      
-   return state.map(b => {
-     if (b.id === tgBoardId) {
-       
-       return board2
-     } else if (b.id === scBoardId) {
-       
-       return board1
-     } else return {...b}
-   })
+      board2.items.splice(dropIndex, 0, {
+        id: sourceCard.id,
+        text: sourceCard.payload,
+      });
+
+      const newState = state.map((b) => {
+        if (b.id === tgBoardId) {
+          return board2;
+        } else if (b.id === scBoardId) {
+          return board1;
+        } else {
+          return b;
+        }
+      });
+
+      return newState;
 
     case ADD_BOARD:
       return [...state, { id: uniqid(), title: "New board", items: [] }];

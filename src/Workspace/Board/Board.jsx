@@ -70,6 +70,12 @@ const [sourceBoardId, setSourceBoardId] = useState()
     setEditTitle(!editTitle);
   };
 
+  const onKeyDown = (e) => {
+    if (e.key === "Enter") {
+     addCardHandle(board.id, editText)
+    }
+  }
+
   return (
     <div className="board" style={boardStyle}>
       <div className="board__content" ref={drop}>
@@ -100,6 +106,7 @@ const [sourceBoardId, setSourceBoardId] = useState()
               placeholder="Enter content"
               value={editText}
               onChange={(e) => changeEditForm(e)}
+              onKeyDown={(e) => onKeyDown(e) }
               autoFocus={true}
             ></textarea>
             <div class="board__form__bottom">

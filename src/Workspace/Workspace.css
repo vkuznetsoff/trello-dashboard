@@ -13,8 +13,9 @@
     width: 80vw;
     padding: 20px;
     display: flex;
+    flex-wrap: wrap;
     flex: 0 1 auto;
-    column-gap: 40px;
+    gap: 40px;
 }
 
 .bottom__addboard {

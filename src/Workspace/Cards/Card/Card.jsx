@@ -12,21 +12,24 @@ const Card = ({ card, tgboardId }) => {
   const [currentBoard, setCurrentBoard] = useState();
   const [currentCard, setCurrentCard] = useState();
 
-  const [{ isDragging }, drag] = useDrag(() => ({
+  let style = undefined;
+
+  const [{ isDragging}, drag] = useDrag(() => ({
     type: dndTypes.CARD,
     item: { id: card.id, from: tgboardId, payload: card.text },
     collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
+      isDragging: monitor.isDragging()
+    })
   }));
 
+
   const onDrop = (dragCard, targetCard, scBoardId, tgboardId ) => {
+    
     dispatch(sortCards(dragCard, targetCard, scBoardId, tgboardId ))
     // console.log('drag', dragCard) 
     // console.log('targetCard', targetCard)
     // console.log('scBoard ', scBoardId);
     // console.log('tgBoard ',tgboardId);
-
   };
 
   const [{ isOver }, drop] = useDrop(() => ({
@@ -43,17 +46,24 @@ const Card = ({ card, tgboardId }) => {
 
   const dropStyle = {
     opacity: isOver ? 1 : undefined,
-    // background: isOver ? "r": undefined,
+   
     transform: isOver ? "translateX(-10px) " : undefined,
   };
 
-  let style = undefined;
+  const endDragStyle = {
+    background: "red"
+  };
+
+  
 
   if (isDragging) {
     style = dragStyle;
   } else if (isOver) {
     style = dropStyle;
-  }
+  } 
+  // else if (endDragging) {
+  //   style = endDragStyle
+  // }
 
   const removeHandle = (cardId, boardId) => {
     dispatch(removeItem(cardId, boardId));
