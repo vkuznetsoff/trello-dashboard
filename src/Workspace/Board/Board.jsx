@@ -16,7 +16,6 @@ const Board = ({ board }) => {
   const style = {
     visibility:
       (editText === undefined) | (editText === "") ? "hidden" : "visible",
-    //  display: (editText == undefined | editText === "") ? "none" : "block"
   };
 
   const openFormHandle = () => {
@@ -34,8 +33,10 @@ const Board = ({ board }) => {
   };
 
   const addCardHandle = (boardId, text) => {
-    dispatch(addItem(boardId, text));
-    closeEditForm();
+    if (editText.trim()) {
+      dispatch(addItem(boardId, text));
+      closeEditForm();
+    }
   };
 
   const cancelHandle = () => {
@@ -43,22 +44,22 @@ const Board = ({ board }) => {
   };
 
   const removeBoardHandle = (id) => {
-      dispatch(removeBoard(id))
-  }
+    dispatch(removeBoard(id));
+  };
 
   const onDrop = (itemId, sourceBoardId, targetBoardId, payload) => {
-    if (sourceBoardId !== targetBoardId) dispatch(dropCard(itemId, sourceBoardId, targetBoardId, payload));
+    if (sourceBoardId !== targetBoardId)
+      dispatch(dropCard(itemId, sourceBoardId, targetBoardId, payload));
   };
-const [sourceBoardId, setSourceBoardId] = useState()
+  const [sourceBoardId, setSourceBoardId] = useState();
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: dndTypes.CARD,
     drop: (item, monitor) => onDrop(item.id, item.from, board.id, item.payload),
     collect: (monitor) => ({
-      isOver: monitor.isOver()
+      isOver: monitor.isOver(),
     }),
   }));
-  
 
   const boardStyle = {
     opacity: isOver ? 0.8 : 1,
@@ -71,16 +72,19 @@ const [sourceBoardId, setSourceBoardId] = useState()
   };
 
   const onKeyDown = (e) => {
-    if (e.key === "Enter") {
-     addCardHandle(board.id, editText)
+    if (e.key === "Enter" && editText.trim()) {
+      addCardHandle(board.id, editText);
     }
-  }
+  };
 
   return (
     <div className="board" style={boardStyle}>
       <div className="board__content" ref={drop}>
         <div className="board__header">
-          <div className="board__removebtn" onClick={() => removeBoardHandle(board.id)}>
+          <div
+            className="board__removebtn"
+            onClick={() => removeBoardHandle(board.id)}
+          >
             <img src={boardCancel2} alt="removeBoard" />
           </div>
         </div>
@@ -102,11 +106,12 @@ const [sourceBoardId, setSourceBoardId] = useState()
 
         {visibleForm && (
           <div className="board__form">
+            <div className="tooltip">Нажмите Enter для добавления карточки</div>
             <textarea
               placeholder="Enter content"
               value={editText}
               onChange={(e) => changeEditForm(e)}
-              onKeyDown={(e) => onKeyDown(e) }
+              onKeyDown={(e) => onKeyDown(e)}
               autoFocus={true}
             ></textarea>
             <div class="board__form__bottom">
