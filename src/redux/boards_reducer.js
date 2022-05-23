@@ -12,7 +12,7 @@ import {
 const initState = [
   {
     id: "b1",
-    title: "Название",
+    title: "Новая доска",
     items: [],
   },
 ];
@@ -52,25 +52,12 @@ const boardReducer = (state = initState, action) => {
         } else return b;
       });
 
-    //   const dropIndex = board.items.indexOf(item);
-    // board.items.splice(dropIndex + 1, 0, currentItem);
-
-    // const removeIndex = currentBoard.items.indexOf(currentItem)
-    // currentBoard.items.splice(removeIndex, 1)
-
     case SORT_CARDS:
       const { sourceCard, targetCard, scBoardId, tgBoardId } = action.payload;
       const board1 = state.find((b) => b.id === scBoardId);
       const board2 = state.find((b) => b.id === tgBoardId);
 
-      // const item1 = board1.items.find((item) => item.id === sourceCard.id);
-      // const removeIndex = board1.items.indexOf(item1);
-      
       const removeIndex = board1.items.findIndex(i => i.id === sourceCard.id)
-      
-
-      // const item2 = board2.items.find((item) => item.id === targetCard.id);
-      // const dropIndex = board2.items.indexOf(item2);
       const dropIndex = board2.items.findIndex(i => i.id === targetCard.id);
 
       board1.items.splice(removeIndex, 1);
@@ -93,7 +80,7 @@ const boardReducer = (state = initState, action) => {
       return newState;
 
     case ADD_BOARD:
-      return [...state, { id: uniqid(), title: "New board", items: [] }];
+      return [...state, { id: uniqid(), title: "Новая доска", items: [] }];
 
     case REMOVE_BOARD:
       return state.filter((b) => b.id !== action.payload);

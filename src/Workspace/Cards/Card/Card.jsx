@@ -1,20 +1,16 @@
 import "./Card.css";
 import remove2 from "..//../../assets/images/remove2.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { removeItem, sortCards } from "../../../redux/actions";
 import { useDrag, useDrop } from "react-dnd";
 import { dndTypes } from "../../../dnd/dndTypes";
-import { useState } from "react";
 
 const Card = ({ card, tgboardId }) => {
   const dispatch = useDispatch();
-  const dropIndex = useSelector(state => state.boards)
-  const [currentBoard, setCurrentBoard] = useState();
-  const [currentCard, setCurrentCard] = useState();
 
   let style = undefined;
 
-  const [{ isDragging}, drag] = useDrag(() => ({
+  const [{ isDragging }, drag] = useDrag(() => ({
     type: dndTypes.CARD,
     item: { id: card.id, from: tgboardId, payload: card.text },
     collect: (monitor) => ({
@@ -23,18 +19,13 @@ const Card = ({ card, tgboardId }) => {
   }));
 
 
-  const onDrop = (dragCard, targetCard, scBoardId, tgboardId ) => {
-    
-    dispatch(sortCards(dragCard, targetCard, scBoardId, tgboardId ))
-    // console.log('drag', dragCard) 
-    // console.log('targetCard', targetCard)
-    // console.log('scBoard ', scBoardId);
-    // console.log('tgBoard ',tgboardId);
+  const onDrop = (dragCard, targetCard, scBoardId, tgboardId) => {
+    dispatch(sortCards(dragCard, targetCard, scBoardId, tgboardId))
   };
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: dndTypes.CARD,
-    drop: (item, monitor) => onDrop(item, card, item.from, tgboardId), //onDrop(item.id, item.from, board.id, item.payload),
+    drop: (item) => onDrop(item, card, item.from, tgboardId),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
     }),
@@ -46,24 +37,16 @@ const Card = ({ card, tgboardId }) => {
 
   const dropStyle = {
     opacity: isOver ? 1 : undefined,
-   
+
     transform: isOver ? "translateX(-10px) " : undefined,
   };
 
-  const endDragStyle = {
-    background: "red"
-  };
-
-  
 
   if (isDragging) {
     style = dragStyle;
   } else if (isOver) {
     style = dropStyle;
-  } 
-  // else if (endDragging) {
-  //   style = endDragStyle
-  // }
+  }
 
   const removeHandle = (cardId, boardId) => {
     dispatch(removeItem(cardId, boardId));

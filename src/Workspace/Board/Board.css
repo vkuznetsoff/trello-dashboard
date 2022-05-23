@@ -20,6 +20,7 @@
 .board__header {
   display: flex;
   width: 100%;
+  position: relative;
   flex-direction: reverse-column;
   justify-content: flex-end;
 }
@@ -28,13 +29,16 @@
   width: 20px;
 }
 
+
+
 .board__title {
+  width: 100%;
   font-weight: 700;
   font-size: 20pt;
   line-height: 20pt;
   color: antiquewhite;
   word-break: break-all;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .board__title:focus {
@@ -50,45 +54,11 @@
   display: flex;
   flex-direction: column;
   opacity: none;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-
-  from {
-    right: -10%;
-  }
-
-  to {
-    right: 0;
-  }
-}
-
-.tooltip {
-  color: #45161c;
-  font-weight: 500;
-  font-size: 8pt;
-  width: 100px;
-  text-align: center;
-  word-wrap: break-word;  
-  /* padding: 10px 10px; */
-  /* width: max-content; */
-  background: antiquewhite;
   position: relative;
-  z-index: 9999;
-  /* right: -105%; */
-  /* top: 50px; */
-  transform: translate(300%, 5%);
-  animation: fade-in 1s ease;
 }
 
 .board__form__addbtn {
-  flex: 0.5;
+  flex: 1;
   background: rgba(172, 202, 132, 0.8);
   opacity: 85%;
   color: #45161c;
@@ -100,9 +70,15 @@
 }
 
 .board__form__canlelbtn {
+  flex: 1;
   color: antiquewhite;
-  background: none;
+  background: rgba(241, 136, 128, 0.8);
+  opacity: 85%;
+  margin: 10px 10px 10px 0;
+  padding: 10px;
+  border-radius: 10px;
   border: none;
+  font-size: 14pt;
 }
 
 .board__form__bottom {

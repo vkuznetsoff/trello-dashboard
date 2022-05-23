@@ -5,7 +5,6 @@ import {
   DROP_CARD,
   REMOVE_BOARD,
   REMOVE_ITEM,
-  SORT_CARD,
   SORT_CARDS,
 } from "./actionTypes";
 

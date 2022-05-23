@@ -1,0 +1,48 @@
+@keyframes rotation {
+    0% {
+        transform:rotateY(80deg);
+    }
+    100% {
+        transform:rotateY(0deg);
+    }
+}
+
+.board__header__del {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 9999;
+    left: 105%;
+    top: -150%;
+    padding: 0px 10px 10px 10px;
+    background: antiquewhite;
+    font-weight: 500;
+    border-radius: 10%;
+    animation: rotation 1s;
+  }
+  
+  .board__header__del p {
+    font-size: 12pt;
+    
+  }
+  
+  .del_btns {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-size: 10pt;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .del_yes {
+    width: 35%;
+   background: #acca7b;
+   padding: 5px 5px;
+  }
+  
+  .del_no {
+    width: 35%;
+    background: #f05050;
+   padding: 5px 5px;
+  }

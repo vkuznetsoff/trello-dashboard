@@ -1,32 +1,61 @@
 .workspace {
-    min-height: 100vh;
-    height: auto;
+    min-height: 90vh;
     background: no-repeat url("../assets/images/background2.jpg");
     background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    border: 1px solid;
+}
+
+.header {
+    background: rgba(52, 94, 13, 0.6);
+    color: #faebd7;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header__content {
+    width: 80vw;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+}
+
+.header__content img {
+    max-height: 50px;
+}
+
+p {
+    margin: 10px;
+    font-weight: 700;
+    font-size: 20pt;
 }
 
 .content {
     width: 80vw;
     padding: 20px;
-    display: flex;
+    display: flex; 
+    justify-content: flex-start;
     flex-wrap: wrap;
     flex: 0 1 auto;
     gap: 40px;
+   
+    
 }
 
 .bottom__addboard {
     margin-bottom: 50px;
-    padding: 20px 60px ;
-   border-radius: 20px;
+    padding: 20px 60px;
+    border-radius: 20px;
     background: #acca7b;
     opacity: 85%;
     font-weight: 600;
 }
 
 .bottom__addboard:hover {
-    filter: brightness(120%) ;
+    filter: brightness(120%);
 }

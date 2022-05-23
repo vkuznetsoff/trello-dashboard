@@ -1,0 +1,33 @@
+@keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+    from {
+      left: 110%;
+    }
+  
+    to {
+      left: 102%;
+    }
+  }
+  
+  .tooltip {
+    color: #45161c;
+    font-weight: 500;
+    font-size: 8pt;
+    width: 100px;
+    text-align: center;
+    word-wrap: break-word;  
+    /* padding: 10px 10px; */
+    /* width: max-content; */
+    background: antiquewhite;
+    position: absolute;
+    z-index: 9999;
+    left: 102%;
+    top: 10%;
+    /* transform: translate(300%, 5%); */
+    animation: fade-in 1s ease;
+  }

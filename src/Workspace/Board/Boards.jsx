@@ -1,10 +1,6 @@
-import "./Boards.css";
-
 import Board from "./Board";
-import { useState } from "react";
 
 const Boards = ({ boards }) => {
-  const [currentBoard, setCurrentBoard] = useState();
   
   return (
     <>

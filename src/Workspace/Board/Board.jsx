@@ -1,142 +1,102 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDrop } from "react-dnd";
 import { useDispatch } from "react-redux";
 import { dndTypes } from "../../dnd/dndTypes";
-import { addItem, dropCard, removeBoard } from "../../redux/actions";
+import { dropCard, removeBoard } from "../../redux/actions";
+
 import Card from "../Cards/Card/Card";
-import "./Boards.css";
-import EditTitle from "./Title/EditTitle";
+import EditTitle from "./Title/EditTitle"; import EditForm from "./EditForm";
+
 import boardCancel2 from "../../assets/images/boardCancel2.svg";
+import "./Board.css";
+import Dialog from "./Dialog/Dialog";
 
 const Board = ({ board }) => {
-  const [visibleForm, setVisibleForm] = useState(false);
-  const [editText, setEditText] = useState();
-  const dispatch = useDispatch();
+    const [visibleForm, setVisibleForm] = useState(false);
 
-  const style = {
-    visibility:
-      (editText === undefined) | (editText === "") ? "hidden" : "visible",
-  };
+    const [editTitle, setEditTitle] = useState(false);
 
-  const openFormHandle = () => {
-    setVisibleForm(!visibleForm);
-  };
+    const [showDialog, setShowDialog] = useState(false);
 
-  const closeEditForm = () => {
-    setVisibleForm(false);
-    setEditText("");
-  };
+    const [delBoard, setDelBoard] = useState(false)
 
-  const changeEditForm = (e) => {
-    const value = e.target.value;
-    setEditText(value);
-  };
+    const dispatch = useDispatch();
 
-  const addCardHandle = (boardId, text) => {
-    if (editText.trim()) {
-      dispatch(addItem(boardId, text));
-      closeEditForm();
+    const openFormHandle = () => {
+        setVisibleForm(!visibleForm);
+    };
+
+
+    useEffect( () => {
+        delBoard && dispatch(removeBoard(board.id))
+}, [delBoard])
+
+    const removeBoardHandle = () => {
+        setShowDialog(!showDialog)
+    };
+
+    const onDrop = (itemId, sourceBoardId, targetBoardId, payload) => {
+        if (sourceBoardId !== targetBoardId)
+            dispatch(dropCard(itemId, sourceBoardId, targetBoardId, payload));
     }
-  };
 
-  const cancelHandle = () => {
-    closeEditForm();
-  };
+    const [{ isOver }, drop] = useDrop(() => ({
+        accept: dndTypes.CARD,
+        drop: (item) => onDrop(item.id, item.from, board.id, item.payload),
+        collect: (monitor) => ({
+            isOver: monitor.isOver(),
+        }),
+    }));
 
-  const removeBoardHandle = (id) => {
-    dispatch(removeBoard(id));
-  };
+    const titleClickHandle = () => {
+        setEditTitle(!editTitle);
+    };
 
-  const onDrop = (itemId, sourceBoardId, targetBoardId, payload) => {
-    if (sourceBoardId !== targetBoardId)
-      dispatch(dropCard(itemId, sourceBoardId, targetBoardId, payload));
-  };
-  const [sourceBoardId, setSourceBoardId] = useState();
 
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: dndTypes.CARD,
-    drop: (item, monitor) => onDrop(item.id, item.from, board.id, item.payload),
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-    }),
-  }));
+    const boardStyle = {
+        opacity: isOver ? 0.8 : 1,
+    };
 
-  const boardStyle = {
-    opacity: isOver ? 0.8 : 1,
-  };
+    return (
+        <div className="board" style={boardStyle}>
+            <div className="board__content" ref={drop}>
+                <div className="board__header">
+                    <div
+                        className="board__removebtn"
+                        onClick={() => removeBoardHandle()}
+                    >
+                        <img src={boardCancel2} alt="removeBoard" />
+                    </div>
 
-  const [editTitle, setEditTitle] = useState(false);
+                   {showDialog && <Dialog setDelBoard={setDelBoard} setShowDialog={setShowDialog}/>}
+                </div>
 
-  const titleClickHandle = () => {
-    setEditTitle(!editTitle);
-  };
+                <div className="board__title" onClick={titleClickHandle}>
+                    {!editTitle ? (
+                        board.title
+                    ) : (
+                        <EditTitle
+                            initialValue={board.title}
+                            setEditTitle={setEditTitle}
+                            boardId={board.id}
+                        />
+                    )}
+                </div>
 
-  const onKeyDown = (e) => {
-    if (e.key === "Enter" && editText.trim()) {
-      addCardHandle(board.id, editText);
-    }
-  };
+                {board.items.map((i) => (
+                    <Card key={i.id} card={i} tgboardId={board.id} />
+                ))}
 
-  return (
-    <div className="board" style={boardStyle}>
-      <div className="board__content" ref={drop}>
-        <div className="board__header">
-          <div
-            className="board__removebtn"
-            onClick={() => removeBoardHandle(board.id)}
-          >
-            <img src={boardCancel2} alt="removeBoard" />
-          </div>
-        </div>
-        <div className="board__title" onClick={titleClickHandle}>
-          {!editTitle ? (
-            board.title
-          ) : (
-            <EditTitle
-              initialValue={board.title}
-              setEditTitle={setEditTitle}
-              boardId={board.id}
-            />
-          )}
-        </div>
+                {visibleForm && <EditForm board={board} setVisibleForm={setVisibleForm} />}
 
-        {board.items.map((i) => (
-          <Card key={i.id} card={i} tgboardId={board.id} />
-        ))}
-
-        {visibleForm && (
-          <div className="board__form">
-            <div className="tooltip">Нажмите Enter для добавления карточки</div>
-            <textarea
-              placeholder="Enter content"
-              value={editText}
-              onChange={(e) => changeEditForm(e)}
-              onKeyDown={(e) => onKeyDown(e)}
-              autoFocus={true}
-            ></textarea>
-            <div class="board__form__bottom">
-              <button
-                className="board__form__addbtn"
-                style={style}
-                onClick={() => addCardHandle(board.id, editText)}
-              >
-                Add card
-              </button>
-              <button className="board__form__canlelbtn" onClick={cancelHandle}>
-                X
-              </button>
+                {!visibleForm && (
+                    <button className="board__addbtn" onClick={openFormHandle}>
+                        + Добавить карточку
+                    </button>
+                )}
             </div>
-          </div>
-        )}
-
-        {!visibleForm && (
-          <button className="board__addbtn" onClick={openFormHandle}>
-            + Добавить карточку
-          </button>
-        )}
-      </div>
-    </div>
-  );
+        </div>
+    );
 };
 
 export default Board;

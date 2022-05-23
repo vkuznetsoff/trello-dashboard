@@ -11,13 +11,7 @@ const EditTitle = ({ initialValue, setEditTitle, boardId }) => {
     dispatch(changeBoardTitle(tempTitle, boardId));
   };
 
-  const style = {
-    outline: "none",
-    fontweight: "700",
-    fontsize: "26pt",
-    lineheight: "26pt",
-  };
-
+ 
   return (
     <div>
       <input
