@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addItem } from "../../redux/actions";
+import { addItem } from "../../../redux/actions";
 import Tooltip from "./Tooltip/Tooltip";
 
 const EditForm = ({board, setVisibleForm}) => {

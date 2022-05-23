@@ -1,10 +1,8 @@
-import { Provider, useSelector } from 'react-redux';
-import './App.css';
+import {Provider} from 'react-redux';
 import { store } from './redux/store';
-import Boards from './Workspace/Board/Boards';
+import Workspace from "./components/Workspace/Workspace"
 
-import Board from './Workspace/Board/Boards';
-import Workspace from './Workspace/Workspace';
+import './App.css';
 
 function App() {
   
@@ -12,7 +10,6 @@ function App() {
     <Provider store={store} >
     <div className="App">
       <Workspace />
-      
     </div>
     </Provider>
   );

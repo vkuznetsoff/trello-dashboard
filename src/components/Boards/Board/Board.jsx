@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDrop } from "react-dnd";
 import { useDispatch } from "react-redux";
-import { dndTypes } from "../../dnd/dndTypes";
-import { dropCard, removeBoard } from "../../redux/actions";
+import { dndTypes } from "../../../dnd/dndTypes";
+import { dropCard, removeBoard } from "../../../redux/actions";
 
-import Card from "../Cards/Card/Card";
-import EditTitle from "./Title/EditTitle"; import EditForm from "./EditForm";
+import Card from "../../Cards/Card";
+import EditTitle from "./Title/EditTitle"; 
+import EditForm from "./EditForm";
+import Dialog from "../Dialog/Dialog";
 
-import boardCancel2 from "../../assets/images/boardCancel2.svg";
+import boardCancel2 from "../../../assets/images/boardCancel2.svg";
 import "./Board.css";
-import Dialog from "./Dialog/Dialog";
+
 
 const Board = ({ board }) => {
     const [visibleForm, setVisibleForm] = useState(false);

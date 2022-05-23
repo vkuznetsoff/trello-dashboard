@@ -1,4 +1,4 @@
-import Board from "./Board";
+import Board from "./Board/Board";
 
 const Boards = ({ boards }) => {
   

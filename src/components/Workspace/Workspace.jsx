@@ -1,11 +1,11 @@
-import "./Workspace.css";
 import { useDispatch, useSelector } from "react-redux";
-import Boards from "./Board/Boards";
-import { addBoard } from "../redux/actions";
+import { addBoard } from "../../redux/actions";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import Boards from "../Boards/Boards"
 
-import headerLogo from "../assets/images/header.svg"
+import "./Workspace.css";
+import headerLogo from "../../assets/images/header.svg"
 
 const Workspace = () => {
     const boards = useSelector((state) => state.boards);

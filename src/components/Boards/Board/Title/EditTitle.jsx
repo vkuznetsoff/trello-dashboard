@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { changeBoardTitle } from "../../../redux/actions";
+import { changeBoardTitle } from "../../../../redux/actions";
 
 const EditTitle = ({ initialValue, setEditTitle, boardId }) => {
   const [tempTitle, setTempTitle] = useState(initialValue);

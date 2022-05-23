@@ -1,9 +1,9 @@
 import "./Card.css";
-import remove2 from "..//../../assets/images/remove2.svg";
+import remove2 from "../../assets/images/remove2.svg";
 import { useDispatch} from "react-redux";
-import { removeItem, sortCards } from "../../../redux/actions";
+import { removeItem, sortCards } from "../../redux/actions";
 import { useDrag, useDrop } from "react-dnd";
-import { dndTypes } from "../../../dnd/dndTypes";
+import { dndTypes } from "../../dnd/dndTypes";
 
 const Card = ({ card, tgboardId }) => {
   const dispatch = useDispatch();
