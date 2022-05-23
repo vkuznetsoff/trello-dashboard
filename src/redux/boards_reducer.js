@@ -38,7 +38,7 @@ const boardReducer = (state = initState, action) => {
       });
 
     case DROP_CARD:
-      const { itemId, sourceBoardId, targetBoardId, payload } = action.payload;
+      const { itemId, sourceBoardId, targetBoardId, text } = action.payload;
       return state.map((b) => {
         if (sourceBoardId === targetBoardId) {
           return b;
@@ -47,7 +47,7 @@ const boardReducer = (state = initState, action) => {
         } else if (b.id === targetBoardId) {
           return {
             ...b,
-            items: [...b.items, { id: uniqid(), text: payload }],
+            items: [...b.items, { id: uniqid(), text }],
           };
         } else return b;
       });
@@ -64,7 +64,7 @@ const boardReducer = (state = initState, action) => {
       
       board2.items.splice(dropIndex, 0, {
         id: sourceCard.id,
-        text: sourceCard.payload,
+        text: sourceCard.text,
       });
 
       const newState = state.map((b) => {

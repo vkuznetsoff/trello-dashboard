@@ -37,14 +37,14 @@ const Board = ({ board }) => {
         setShowDialog(!showDialog)
     };
 
-    const onDrop = (itemId, sourceBoardId, targetBoardId, payload) => {
+    const onDrop = (itemId, sourceBoardId, targetBoardId, text) => {
         if (sourceBoardId !== targetBoardId)
-            dispatch(dropCard(itemId, sourceBoardId, targetBoardId, payload));
+            dispatch(dropCard(itemId, sourceBoardId, targetBoardId, text));
     }
 
     const [{ isOver }, drop] = useDrop(() => ({
         accept: dndTypes.CARD,
-        drop: (item) => onDrop(item.id, item.from, board.id, item.payload),
+        drop: (item) => onDrop(item.id, item.from, board.id, item.text),
         collect: (monitor) => ({
             isOver: monitor.isOver(),
         }),

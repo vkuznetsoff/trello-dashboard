@@ -12,7 +12,7 @@ const Card = ({ card, tgboardId }) => {
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: dndTypes.CARD,
-    item: { id: card.id, from: tgboardId, payload: card.text },
+    item: { id: card.id, from: tgboardId, text: card.text },
     collect: (monitor) => ({
       isDragging: monitor.isDragging()
     })
