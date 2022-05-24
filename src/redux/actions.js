@@ -49,9 +49,9 @@ export const dropCard = (itemId, sourceBoardId, targetBoardId, text) => {
   };
 };
 
-export const sortCards = (sourceCard, targetCard, scBoardId, tgBoardId) => {
+export const sortCards = (sourceCardId, targetCardId, scBoardId, tgBoardId) => {
   return {
-    type: SORT_CARDS,
-    payload: { sourceCard, targetCard, scBoardId, tgBoardId }
+    type: SORT_CARDS, 
+    payload: {sourceCardId, targetCardId, scBoardId, tgBoardId}
   };
 };

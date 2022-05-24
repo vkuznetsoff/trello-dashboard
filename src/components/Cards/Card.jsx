@@ -19,13 +19,14 @@ const Card = ({ card, tgboardId }) => {
   }));
 
 
-  const onDrop = (dragCard, targetCard, scBoardId, tgboardId) => {
-    dispatch(sortCards(dragCard, targetCard, scBoardId, tgboardId))
+  const onDrop = (dragCardId, targetCardId, scBoardId, tgboardId) => {
+    debugger
+    dispatch(sortCards(dragCardId, targetCardId, scBoardId, tgboardId))
   };
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: dndTypes.CARD,
-    drop: (item) => onDrop(item, card, item.from, tgboardId),
+    drop: (item) => onDrop(item.id, card.id, item.from, tgboardId),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
     }),
