@@ -6,7 +6,7 @@ import { useDrag, useDrop } from "react-dnd";
 import { dndTypes } from "../../dnd/dndTypes";
 import { useState } from 'react';
 
-const Card = ({ card, tgboardId, didSorted, setDidSorted }) => {
+const Card = ({ card, tgboardId}) => {
   const dispatch = useDispatch();
 
 
@@ -22,7 +22,7 @@ const Card = ({ card, tgboardId, didSorted, setDidSorted }) => {
 
 
   const onDrop = (dragCardId, targetCardId, scBoardId, tgboardId) => {
-    setDidSorted(true) 
+  
     dispatch(sortCards(dragCardId, targetCardId, scBoardId, tgboardId))
   };
 
@@ -36,7 +36,6 @@ const Card = ({ card, tgboardId, didSorted, setDidSorted }) => {
 
 
   const checkOverTheCard = () => {
-    setDidSorted(isOver)
 }
 
 checkOverTheCard()

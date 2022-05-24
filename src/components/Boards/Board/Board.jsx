@@ -22,7 +22,7 @@ const Board = ({ board }) => {
 
     const [delBoard, setDelBoard] = useState(false)
 
-    const [didSorted, setDidSorted] = useState(false)
+  
 
     const dispatch = useDispatch();
 
@@ -39,22 +39,23 @@ const Board = ({ board }) => {
         setShowDialog(!showDialog)
     };
 
-    
 
-
-
-    const onDrop = (itemId, sourceBoardId, targetBoardId, text) => {
-        if (sourceBoardId !== targetBoardId && !didSorted)
-            dispatch(dropCard(itemId, sourceBoardId, targetBoardId, text));
-    }
-
-    const [{ isOver }, drop] = useDrop(() => ({
+    const [{ isOver, isOverCurrent }, drop] = useDrop(() => ({
         accept: dndTypes.CARD,
-        drop: (item) => onDrop(item.id, item.from, board.id, item.text),
+        drop(item) {
+           onDrop(item.id, item.from, board.id, item.text)
+        },
         collect: (monitor) => ({
             isOver: monitor.isOver(),
+            isOverCurrent: monitor.isOver({ shallow: true })
         })
-    }));
+    }), [isOver, isOverCurrent]);
+
+    const onDrop = (itemId, sourceBoardId, targetBoardId, text) => {
+        
+           isOver &&  dispatch(dropCard(itemId, sourceBoardId, targetBoardId, text));
+        
+    }
 
 
     const titleClickHandle = () => {
@@ -93,7 +94,7 @@ const Board = ({ board }) => {
                 </div>
 
                 {board.items.map((i) => (
-                    <Card key={i.id} card={i} tgboardId={board.id} didSorted={didSorted} setDidSorted={setDidSorted} />
+                    <Card key={i.id} card={i} tgboardId={board.id} />
                 ))}
 
                 {visibleForm && <EditForm board={board} setVisibleForm={setVisibleForm} />}
