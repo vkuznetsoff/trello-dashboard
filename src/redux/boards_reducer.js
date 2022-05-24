@@ -40,7 +40,7 @@ const boardReducer = (state = initState, action) => {
     case DROP_CARD:
       console.log('drop_card')
       const { itemId, sourceBoardId, targetBoardId, text } = action.payload;
-       state.map((b) => {
+      return state.map((b) => {
         if (sourceBoardId === targetBoardId) {
           return b;
         } else if (b.id === sourceBoardId) {
@@ -55,8 +55,8 @@ const boardReducer = (state = initState, action) => {
 
     case SORT_CARDS:
       console.log('drop_card')
-      const {sourceCardId, targetCardId, scBoardId, tgBoardId} = action.payload;
-      
+      const { sourceCardId, targetCardId, scBoardId, tgBoardId } = action.payload;
+
       // // sourceCardId, targetCardId, scBoardId, tgBoardId
       // console.log("s_before: ", state)
       // const board1 = state.find((b) => b.id === action.scBoardId);
@@ -83,7 +83,7 @@ const boardReducer = (state = initState, action) => {
       //     return b;
       //   }
       // });
-      
+
       const board1 = state.find((b) => b.id === scBoardId);
       const board2 = state.find((b) => b.id === tgBoardId);
       const newCard = board1.items.find((i) => i.id === sourceCardId)
