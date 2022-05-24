@@ -1,0 +1,51 @@
+.card {
+    background: rgba(250, 235, 215, 0.9);
+    /* max-width: 100%; */
+    width: 100%;
+    min-height: 70px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    word-break: break-all;
+    cursor: grab;
+}
+
+.card img {
+    width: 15px;
+    padding: 10px;
+}
+
+.card__text {
+    color: #45161C;
+    font-weight: 500;
+    padding: 10px;
+
+}
+
+.card__removebtn {
+    cursor: pointer;
+}
+
+@keyframes inputMove {
+    0% {
+        transform: translateX(5px);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
