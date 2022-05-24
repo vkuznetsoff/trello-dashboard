@@ -38,13 +38,13 @@ p {
 .content {
     width: 80vw;
     padding: 20px;
-    display: flex; 
+    display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     flex: 0 1 auto;
     gap: 40px;
-   
-    
+
+
 }
 
 .bottom__addboard {

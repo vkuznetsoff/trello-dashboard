@@ -61,7 +61,7 @@ const boardReducer = (state = initState, action) => {
       const dropIndex = board2.items.findIndex(i => i.id === targetCard.id);
 
       board1.items.splice(removeIndex, 1);
-      
+
       board2.items.splice(dropIndex, 0, {
         id: sourceCard.id,
         text: sourceCard.text,

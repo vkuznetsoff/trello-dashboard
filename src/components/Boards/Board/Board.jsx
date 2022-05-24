@@ -5,7 +5,7 @@ import { dndTypes } from "../../../dnd/dndTypes";
 import { dropCard, removeBoard } from "../../../redux/actions";
 
 import Card from "../../Cards/Card";
-import EditTitle from "./Title/EditTitle"; 
+import EditTitle from "./Title/EditTitle";
 import EditForm from "./EditForm";
 import Dialog from "../Dialog/Dialog";
 
@@ -29,9 +29,9 @@ const Board = ({ board }) => {
     };
 
 
-    useEffect( () => {
+    useEffect(() => {
         delBoard && dispatch(removeBoard(board.id))
-}, [delBoard])
+    }, [delBoard])
 
     const removeBoardHandle = () => {
         setShowDialog(!showDialog)
@@ -70,7 +70,7 @@ const Board = ({ board }) => {
                         <img src={boardCancel2} alt="removeBoard" />
                     </div>
 
-                   {showDialog && <Dialog setDelBoard={setDelBoard} setShowDialog={setShowDialog}/>}
+                    {showDialog && <Dialog setDelBoard={setDelBoard} setShowDialog={setShowDialog} />}
                 </div>
 
                 <div className="board__title" onClick={titleClickHandle}>

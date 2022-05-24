@@ -1,5 +1,5 @@
 import "./Tooltip.css"
-const Tooltip = ({text}) => {
+const Tooltip = ({ text }) => {
     return (
         <div className="tooltip">{text}</div>
     )

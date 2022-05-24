@@ -42,16 +42,16 @@ export const changeBoardTitle = (title, id) => {
   };
 };
 
-export const dropCard = (itemId, sourceBoardId, targetBoardId, payload) => {
+export const dropCard = (itemId, sourceBoardId, targetBoardId, text) => {
   return {
     type: DROP_CARD,
-    payload: { itemId, sourceBoardId, targetBoardId, payload },
+    payload: { itemId, sourceBoardId, targetBoardId, text },
   };
 };
 
 export const sortCards = (sourceCard, targetCard, scBoardId, tgBoardId) => {
   return {
     type: SORT_CARDS,
-    payload: {sourceCard, targetCard, scBoardId, tgBoardId}
+    payload: { sourceCard, targetCard, scBoardId, tgBoardId }
   };
 };

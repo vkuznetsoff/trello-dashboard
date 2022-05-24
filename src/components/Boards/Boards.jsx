@@ -1,7 +1,7 @@
 import Board from "./Board/Board";
 
 const Boards = ({ boards }) => {
-  
+
   return (
     <>
       {boards.map(b => (

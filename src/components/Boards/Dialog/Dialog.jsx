@@ -1,14 +1,12 @@
-import { useState } from "react"
 import { useDispatch } from "react-redux";
-import { removeBoard } from "../../../redux/actions";
 import "./Dialog.css"
 
-const Dialog = ({ setDelBoard, setShowDialog}) => {
+const Dialog = ({ setDelBoard, setShowDialog }) => {
     const dispatch = useDispatch();
 
     const clickYesHandle = () => {
         setShowDialog(false)
-        setDelBoard(true)  
+        setDelBoard(true)
     }
 
     const clickNoHandle = () => {

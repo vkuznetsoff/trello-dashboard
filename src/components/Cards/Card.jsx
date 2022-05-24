@@ -1,6 +1,6 @@
 import "./Card.css";
 import remove2 from "../../assets/images/remove2.svg";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { removeItem, sortCards } from "../../redux/actions";
 import { useDrag, useDrop } from "react-dnd";
 import { dndTypes } from "../../dnd/dndTypes";

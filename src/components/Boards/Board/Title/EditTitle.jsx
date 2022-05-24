@@ -11,7 +11,7 @@ const EditTitle = ({ initialValue, setEditTitle, boardId }) => {
     dispatch(changeBoardTitle(tempTitle, boardId));
   };
 
- 
+
   return (
     <div>
       <input
@@ -20,7 +20,7 @@ const EditTitle = ({ initialValue, setEditTitle, boardId }) => {
         autoFocus={true}
         onBlur={() => deactivateEditMode(boardId)}
         onChange={(e) => setTempTitle(e.target.value)}
-        
+
       />
     </div>
   );
