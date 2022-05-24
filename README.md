@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <p align="center"><img src="https://s1.hostingkartinok.com/uploads/images/2022/05/da55e897fb54987332ac8b0409dfde63.jpg" > </p>
 
 <h3 align="center"> Analog of Trello-dashboards with drag and drop </h3>
