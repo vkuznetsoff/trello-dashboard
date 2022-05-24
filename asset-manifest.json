@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/trello-dashboard/static/css/main.96f5b95f.css",
+    "main.js": "/trello-dashboard/static/js/main.82554903.js",
+    "static/media/background2.jpg": "/trello-dashboard/static/media/background2.0fbb01c3677882080902.jpg",
+    "index.html": "/trello-dashboard/index.html",
+    "static/media/boardCancel2.svg": "/trello-dashboard/static/media/boardCancel2.a3d3462e52b55408989ca31391c780cc.svg",
+    "static/media/header.svg": "/trello-dashboard/static/media/header.bb8edd40a1398ea082cc6a04f107e95d.svg",
+    "static/media/remove2.svg": "/trello-dashboard/static/media/remove2.6601ffb5ea9c5c95ff4c542a19d23710.svg",
+    "main.96f5b95f.css.map": "/trello-dashboard/static/css/main.96f5b95f.css.map",
+    "main.82554903.js.map": "/trello-dashboard/static/js/main.82554903.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.96f5b95f.css",
+    "static/js/main.82554903.js"
+  ]
+}
