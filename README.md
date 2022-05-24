@@ -36,7 +36,7 @@ git clone https://github.com/vkuznetsoff/trello-dashboard.git -b master
 
 npm i
 
-npm run build
+npm start
 ```
 
 
