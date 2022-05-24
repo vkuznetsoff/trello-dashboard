@@ -54,7 +54,7 @@ const boardReducer = (state = initState, action) => {
       });
 
     case SORT_CARDS:
-      console.log('drop_card')
+      console.log('sort_card')
       const { sourceCardId, targetCardId, scBoardId, tgBoardId } = action.payload;
 
       // // sourceCardId, targetCardId, scBoardId, tgBoardId
