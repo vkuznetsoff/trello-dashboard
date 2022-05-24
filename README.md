@@ -25,13 +25,6 @@
 
 
 
-
-
-
-
-
-
-
 <br />
 <br />
 
@@ -39,8 +32,10 @@
 # Run
 
 ```
-git clone https://github.com/vkuznetsoff/e-shop.git
+git clone https://github.com/vkuznetsoff/trello-dashboard.git -b master
+
 npm i
+
 npm run build
 ```
 
