@@ -22,6 +22,8 @@ const Board = ({ board }) => {
 
     const [delBoard, setDelBoard] = useState(false)
 
+    const [didSorted, setDidSorted] = useState(false)
+
     const dispatch = useDispatch();
 
     const openFormHandle = () => {
@@ -37,9 +39,12 @@ const Board = ({ board }) => {
         setShowDialog(!showDialog)
     };
 
+    
+
+
+
     const onDrop = (itemId, sourceBoardId, targetBoardId, text) => {
-        
-        if (sourceBoardId !== targetBoardId)
+        if (sourceBoardId !== targetBoardId && !didSorted)
             dispatch(dropCard(itemId, sourceBoardId, targetBoardId, text));
     }
 
@@ -48,8 +53,9 @@ const Board = ({ board }) => {
         drop: (item) => onDrop(item.id, item.from, board.id, item.text),
         collect: (monitor) => ({
             isOver: monitor.isOver(),
-        }),
+        })
     }));
+
 
     const titleClickHandle = () => {
         setEditTitle(!editTitle);
@@ -87,7 +93,7 @@ const Board = ({ board }) => {
                 </div>
 
                 {board.items.map((i) => (
-                    <Card key={i.id} card={i} tgboardId={board.id} />
+                    <Card key={i.id} card={i} tgboardId={board.id} didSorted={didSorted} setDidSorted={setDidSorted} />
                 ))}
 
                 {visibleForm && <EditForm board={board} setVisibleForm={setVisibleForm} />}

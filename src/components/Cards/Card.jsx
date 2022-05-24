@@ -4,9 +4,11 @@ import { useDispatch } from "react-redux";
 import { removeItem, sortCards } from "../../redux/actions";
 import { useDrag, useDrop } from "react-dnd";
 import { dndTypes } from "../../dnd/dndTypes";
+import { useState } from 'react';
 
-const Card = ({ card, tgboardId }) => {
+const Card = ({ card, tgboardId, didSorted, setDidSorted }) => {
   const dispatch = useDispatch();
+
 
   let style = undefined;
 
@@ -20,7 +22,7 @@ const Card = ({ card, tgboardId }) => {
 
 
   const onDrop = (dragCardId, targetCardId, scBoardId, tgboardId) => {
-    
+    setDidSorted(true) 
     dispatch(sortCards(dragCardId, targetCardId, scBoardId, tgboardId))
   };
 
@@ -31,6 +33,13 @@ const Card = ({ card, tgboardId }) => {
       isOver: monitor.isOver(),
     }),
   }));
+
+
+  const checkOverTheCard = () => {
+    setDidSorted(isOver)
+}
+
+checkOverTheCard()
 
   const dragStyle = {
     opacity: isDragging ? 0.5 : 1,
