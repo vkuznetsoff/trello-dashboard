@@ -20,7 +20,7 @@ const Card = ({ card, tgboardId }) => {
 
 
   const onDrop = (dragCardId, targetCardId, scBoardId, tgboardId) => {
-    debugger
+    
     dispatch(sortCards(dragCardId, targetCardId, scBoardId, tgboardId))
   };
 

@@ -38,7 +38,7 @@ const Board = ({ board }) => {
     };
 
     const onDrop = (itemId, sourceBoardId, targetBoardId, text) => {
-        debugger
+        
         if (sourceBoardId !== targetBoardId)
             dispatch(dropCard(itemId, sourceBoardId, targetBoardId, text));
     }

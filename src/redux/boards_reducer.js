@@ -38,9 +38,9 @@ const boardReducer = (state = initState, action) => {
       });
 
     case DROP_CARD:
-      debugger
+      console.log('drop_card')
       const { itemId, sourceBoardId, targetBoardId, text } = action.payload;
-      return state.map((b) => {
+       state.map((b) => {
         if (sourceBoardId === targetBoardId) {
           return b;
         } else if (b.id === sourceBoardId) {
@@ -54,7 +54,7 @@ const boardReducer = (state = initState, action) => {
       });
 
     case SORT_CARDS:
-      debugger
+      console.log('drop_card')
       const {sourceCardId, targetCardId, scBoardId, tgBoardId} = action.payload;
       
       // // sourceCardId, targetCardId, scBoardId, tgBoardId
