@@ -34,12 +34,6 @@ const Card = ({ card, tgboardId}) => {
     }),
   }));
 
-
-  const checkOverTheCard = () => {
-}
-
-checkOverTheCard()
-
   const dragStyle = {
     opacity: isDragging ? 0.5 : 1,
   };

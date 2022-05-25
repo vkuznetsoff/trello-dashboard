@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDrop } from "react-dnd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dndTypes } from "../../../dnd/dndTypes";
-import { dropCard, removeBoard } from "../../../redux/actions";
+import { dropCard, removeBoard, thunkAction } from "../../../redux/actions";
 
 import Card from "../../Cards/Card";
 import EditTitle from "./Title/EditTitle";
@@ -11,9 +11,12 @@ import Dialog from "../Dialog/Dialog";
 
 import boardCancel2 from "../../../assets/images/boardCancel2.svg";
 import "./Board.css";
+import { SORT_CARDS } from './../../../redux/actionTypes';
+import { SORTED } from './../../../redux/actions';
 
 
 const Board = ({ board }) => {
+    
     const [visibleForm, setVisibleForm] = useState(false);
 
     const [editTitle, setEditTitle] = useState(false);
@@ -22,9 +25,12 @@ const Board = ({ board }) => {
 
     const [delBoard, setDelBoard] = useState(false)
 
-  
-
     const dispatch = useDispatch();
+
+
+
+
+
 
     const openFormHandle = () => {
         setVisibleForm(!visibleForm);
@@ -33,28 +39,29 @@ const Board = ({ board }) => {
 
     useEffect(() => {
         delBoard && dispatch(removeBoard(board.id))
-    }, [delBoard])
+    }, [delBoard, board])
 
     const removeBoardHandle = () => {
         setShowDialog(!showDialog)
     };
 
+    const [hasCardSorted, setHasCardSorted] = useState(false)
 
-    const [{ isOver, isOverCurrent }, drop] = useDrop(() => ({
+    const [{ isOver }, drop] = useDrop(() => ({
         accept: dndTypes.CARD,
-        drop(item) {
-           onDrop(item.id, item.from, board.id, item.text)
+        drop(item, monitor) {
+            const above = monitor.isOver() 
+            above && onDrop(item.id, item.from, board.id, item.text)
         },
         collect: (monitor) => ({
             isOver: monitor.isOver(),
-            isOverCurrent: monitor.isOver({ shallow: true })
         })
-    }), [isOver, isOverCurrent]);
+    }));
 
-    const onDrop = (itemId, sourceBoardId, targetBoardId, text) => {
-        
-           isOver &&  dispatch(dropCard(itemId, sourceBoardId, targetBoardId, text));
-        
+
+    const onDrop = (dragCardId, sourceBoardId, targetBoardId, text) => {
+        debugger
+        dispatch(dropCard(dragCardId, sourceBoardId, targetBoardId, text));     
     }
 
 
@@ -69,6 +76,7 @@ const Board = ({ board }) => {
 
     return (
         <div className="board" style={boardStyle}>
+           
             <div className="board__content" ref={drop}>
                 <div className="board__header">
                     <div
@@ -94,7 +102,7 @@ const Board = ({ board }) => {
                 </div>
 
                 {board.items.map((i) => (
-                    <Card key={i.id} card={i} tgboardId={board.id} />
+                    <Card key={i.id} card={i} tgboardId={board.id} setHasCardSorted={setHasCardSorted} />
                 ))}
 
                 {visibleForm && <EditForm board={board} setVisibleForm={setVisibleForm} />}

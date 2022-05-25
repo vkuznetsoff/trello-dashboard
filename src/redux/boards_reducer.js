@@ -39,6 +39,7 @@ const boardReducer = (state = initState, action) => {
 
     case DROP_CARD:
       console.log('drop_card')
+      debugger
       const { itemId, sourceBoardId, targetBoardId, text } = action.payload;
       return state.map((b) => {
         if (sourceBoardId === targetBoardId) {
@@ -56,33 +57,6 @@ const boardReducer = (state = initState, action) => {
     case SORT_CARDS:
       console.log('sort_card')
       const { sourceCardId, targetCardId, scBoardId, tgBoardId } = action.payload;
-
-      // // sourceCardId, targetCardId, scBoardId, tgBoardId
-      // console.log("s_before: ", state)
-      // const board1 = state.find((b) => b.id === action.scBoardId);
-      // const board2 = state.find((b) => b.id === action.tgBoardId);
-      // console.log("b1: ", board1)
-      // console.log("b2: ", board2)
-      // console.log("s: ", state)
-
-      // const newCard = board1.items.find((i) => i.id === action.sourceCardId)
-
-      // const removeIndex = board1.items.findIndex(i => i.id === action.sourceCardId)
-      // const dropIndex = board2.items.findIndex(i => i.id === action.targetCardId);
-
-      // // board1.items.splice(removeIndex, 1);
-
-      // // board2.items.splice(dropIndex, 0, newCard);
-
-      // const newState = state.map((b) => {
-      //   if (b.id === action.tgBoardId) {
-      //     return {...b, items: b.items.splice(dropIndex, 0, newCard)};
-      //   } else if (b.id === action.scBoardId) {
-      //     return {...b, items: b.items.splice(removeIndex, 1)};
-      //   } else {
-      //     return b;
-      //   }
-      // });
 
       const board1 = state.find((b) => b.id === scBoardId);
       const board2 = state.find((b) => b.id === tgBoardId);
