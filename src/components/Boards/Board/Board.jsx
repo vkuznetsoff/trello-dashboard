@@ -60,7 +60,6 @@ const Board = ({ board }) => {
 
 
     const onDrop = (dragCardId, sourceBoardId, targetBoardId, text) => {
-        debugger
         dispatch(dropCard(dragCardId, sourceBoardId, targetBoardId, text));     
     }
 
