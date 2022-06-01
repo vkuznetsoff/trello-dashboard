@@ -11,7 +11,8 @@
 ## Sreencast
 <img src="https://s1.hostingkartinok.com/uploads/images/2022/05/ee30d7cfbb5740988e2f615021c07809.gif" width="650">
 
-[**LIVE DEMO**](https://trello-dashboard.vercel.app/)
+
+<a href="http://example.com/](https://trello-dashboard.vercel.app/" target="_blank">LIVE DEMO</a>
 
 ## Languagies and Tools
 
