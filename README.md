@@ -11,7 +11,7 @@
 ## Sreencast
 <img src="https://s1.hostingkartinok.com/uploads/images/2022/05/ee30d7cfbb5740988e2f615021c07809.gif" width="650">
 
-[**LIVE DEMO**](https://vkuznetsoff.github.io/trello-dashboard/)
+[**LIVE DEMO**](https://trello-dashboard.vercel.app/)
 
 ## Languagies and Tools
 
