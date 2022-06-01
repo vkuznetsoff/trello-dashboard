@@ -42,6 +42,4 @@ npm start
 
 
 
-=======
-# trello-dashboard
->>>>>>> 3648cbf (Initial commit)
+
